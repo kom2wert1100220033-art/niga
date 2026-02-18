@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Юзер стори · Управление сервисными заданиями</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>📋 Сервисные задания · Юзер стори</h1>
+        <div class="subhead">Сериков Шавхалов · Управляющий магазином / офисом / HR</div>
+
+        <div class="filter-section">
+            <div class="filter-tabs">
+                <button class="filter-btn active" data-filter="all">Все истории</button>
+                <button class="filter-btn" data-filter="MVP">Только MVP</button>
+                <button class="filter-btn" data-filter="Релиз 2">Релиз 2</button>
+            </div>
+            <div class="legend-prio">
+                <span class="prio-mvp">MVP</span>
+                <span class="prio-r2">Релиз 2</span>
+            </div>
+        </div>
+
+        <div id="storiesContainer" class="story-grid"></div>
+        
+        <footer>
+            ⚡ на основе userstory.docx · управление заданиями и специалистами
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
