@@ -1,0 +1,186 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36" version="29.6.0">
+  <diagram name="BPMN_Service_Process_PRO_v2" id="0">
+    <mxGraphModel dx="2037" dy="1061" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2600" pageHeight="1800" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="pool" parent="1" style="swimlane;horizontal=0;startSize=40;fontStyle=1;" value="Бизнес-процесс управления сервисными заданиями" vertex="1">
+          <mxGeometry height="1200" width="2500" x="20" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_store" parent="pool" style="swimlane;horizontal=1;startSize=30;" value="Управляющий магазином" vertex="1">
+          <mxGeometry height="320" width="2500" as="geometry" />
+        </mxCell>
+        <mxCell id="start" parent="lane_store" style="ellipse;whiteSpace=wrap;html=1;" value="Старт: потребность в сервисных работах" vertex="1">
+          <mxGeometry height="60" width="60" x="120" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="create_task" parent="lane_store" style="rounded=1;whiteSpace=wrap;html=1;" value="Создать задание&#xa;Статус: НОВЫЙ" vertex="1">
+          <mxGeometry height="70" width="250" x="250" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="data_task" parent="lane_store" style="shape=document;whiteSpace=wrap;html=1;" value="Объект данных: Задание" vertex="1">
+          <mxGeometry height="70" width="190" x="250" y="215" as="geometry" />
+        </mxCell>
+        <mxCell id="fill_task" parent="lane_store" style="rounded=1;whiteSpace=wrap;html=1;" value="Заполнить обязательные поля" vertex="1">
+          <mxGeometry height="70" width="270" x="540" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="g_cancel_new" parent="lane_store" style="rhombus;whiteSpace=wrap;html=1;" value="Отменить задание?" vertex="1">
+          <mxGeometry height="120" width="120" x="860" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="cancel_new_task" parent="lane_store" style="rounded=1;whiteSpace=wrap;html=1;" value="Отменить (статус: ОТМЕНЁН)" vertex="1">
+          <mxGeometry height="70" width="280" x="1030" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="end_cancel_new" parent="lane_store" style="ellipse;strokeWidth=3;whiteSpace=wrap;html=1;" value="Конец: отменено (новый)" vertex="1">
+          <mxGeometry height="80" width="80" x="1350" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="g_valid" parent="lane_store" style="rhombus;whiteSpace=wrap;html=1;" value="Поля заполнены?" vertex="1">
+          <mxGeometry height="120" width="120" x="1030" y="110" as="geometry" />
+        </mxCell>
+        <mxCell id="send_task" parent="lane_store" style="rounded=1;whiteSpace=wrap;html=1;" value="Отправить в офис&#xa;Статус: В РАБОТЕ" vertex="1">
+          <mxGeometry height="70" width="300" x="1210" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="cancel_work_task" parent="lane_store" style="rounded=1;whiteSpace=wrap;html=1;" value="Отменить задание (в работе)&#xa;Статус: ОТМЕНЁН" vertex="1">
+          <mxGeometry height="70" width="320" x="1560" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="lane_store" source="start" target="create_task">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="lane_store" source="create_task" target="fill_task">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="lane_store" source="fill_task" target="g_cancel_new">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="lane_store" source="g_cancel_new" target="cancel_new_task" value="Да">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="lane_store" source="g_cancel_new" target="g_valid" value="Нет">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="lane_store" source="cancel_new_task" target="end_cancel_new">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="lane_store" source="g_valid" target="fill_task" value="Нет">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e8" edge="1" parent="lane_store" source="g_valid" target="send_task" value="Да">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="da1" edge="1" parent="lane_store" source="create_task" style="dashed=1;" target="data_task">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="note_cancel" parent="lane_store" style="shape=note;whiteSpace=wrap;html=1;" value="Примечание: отмена доступна&#xa;для статусов «НОВЫЙ» и «В РАБОТЕ»" vertex="1">
+          <mxGeometry height="90" width="320" x="1560" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_office" parent="pool" style="swimlane;horizontal=1;startSize=30;" value="Управляющий офисом" vertex="1">
+          <mxGeometry height="440" width="2500" y="320" as="geometry" />
+        </mxCell>
+        <mxCell id="review_task" parent="lane_office" style="rounded=1;whiteSpace=wrap;html=1;" value="Просмотреть задание" vertex="1">
+          <mxGeometry height="70" width="250" x="250" y="87" as="geometry" />
+        </mxCell>
+        <mxCell id="search_task" parent="lane_office" style="rounded=1;whiteSpace=wrap;html=1;" value="Поиск специалиста" vertex="1">
+          <mxGeometry height="70" width="250" x="540" y="87" as="geometry" />
+        </mxCell>
+        <mxCell id="datastore" parent="lane_office" style="shape=cylinder;whiteSpace=wrap;html=1;" value="Хранилище данных:&#xa;База специалистов" vertex="1">
+          <mxGeometry height="90" width="240" x="540" y="187" as="geometry" />
+        </mxCell>
+        <mxCell id="g_found" parent="lane_office" style="rhombus;whiteSpace=wrap;html=1;" value="Специалист найден?" vertex="1">
+          <mxGeometry height="130" width="130" x="860" y="77" as="geometry" />
+        </mxCell>
+        <mxCell id="assign_task" parent="lane_office" style="rounded=1;whiteSpace=wrap;html=1;" value="Назначить специалиста&#xa;Статус: ВЫПОЛНЕН" vertex="1">
+          <mxGeometry height="70" width="320" x="1040" y="87" as="geometry" />
+        </mxCell>
+        <mxCell id="close_task" parent="lane_office" style="rounded=1;whiteSpace=wrap;html=1;" value="Закрыть задание&#xa;Статус: ЗАКРЫТ" vertex="1">
+          <mxGeometry height="70" width="270" x="1410" y="87" as="geometry" />
+        </mxCell>
+        <mxCell id="archive_data" parent="lane_office" style="shape=document;whiteSpace=wrap;html=1;" value="Архив заданий" vertex="1">
+          <mxGeometry height="70" width="220" x="1720" y="87" as="geometry" />
+        </mxCell>
+        <mxCell id="end_success" parent="lane_office" style="ellipse;strokeWidth=3;whiteSpace=wrap;html=1;" value="Конец: закрыто" vertex="1">
+          <mxGeometry height="90" width="90" x="1980" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="create_request" parent="lane_office" style="rounded=1;whiteSpace=wrap;html=1;" value="Создать заявку на подбор&#xa;(если нет специалистов)" vertex="1">
+          <mxGeometry height="70" width="340" x="1040" y="237" as="geometry" />
+        </mxCell>
+        <mxCell id="cancel_recv" parent="lane_office" style="ellipse;whiteSpace=wrap;html=1;" value="Получено уведомление об отмене" vertex="1">
+          <mxGeometry height="70" width="70" x="880" y="237" as="geometry" />
+        </mxCell>
+        <mxCell id="end_cancel_work" parent="lane_office" style="ellipse;strokeWidth=3;whiteSpace=wrap;html=1;" value="Конец: отменено (в работе)" vertex="1">
+          <mxGeometry height="90" width="90" x="1040" y="327" as="geometry" />
+        </mxCell>
+        <mxCell id="e10" edge="1" parent="lane_office" source="review_task" target="search_task">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e11" edge="1" parent="lane_office" source="search_task" target="g_found">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e12" edge="1" parent="lane_office" source="g_found" target="assign_task" value="Да">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e13" edge="1" parent="lane_office" source="g_found" target="create_request" value="Нет">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e14" edge="1" parent="lane_office" source="assign_task" target="close_task">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e15" edge="1" parent="lane_office" source="close_task" target="archive_data">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e16" edge="1" parent="lane_office" source="archive_data">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1980.0594893084995" y="129.6868854791137" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e22" edge="1" parent="lane_office" source="cancel_recv" target="end_cancel_work">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="da2" edge="1" parent="lane_office" source="search_task" style="dashed=1;" target="datastore">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_hr" parent="pool" style="swimlane;horizontal=1;startSize=30;" value="HR-специалист" vertex="1">
+          <mxGeometry height="440" width="2500" y="760" as="geometry" />
+        </mxCell>
+        <mxCell id="hr_accept" parent="lane_hr" style="rounded=1;whiteSpace=wrap;html=1;" value="Принять заявку&#xa;Статус: В РАБОТЕ" vertex="1">
+          <mxGeometry height="70" width="300" x="250" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="hr_select" parent="lane_hr" style="rounded=1;whiteSpace=wrap;html=1;" value="Подобрать кандидата" vertex="1">
+          <mxGeometry height="70" width="260" x="600" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="hr_add" parent="lane_hr" style="rounded=1;whiteSpace=wrap;html=1;" value="Добавить специалиста в базу" vertex="1">
+          <mxGeometry height="70" width="320" x="910" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="e18" edge="1" parent="lane_hr" source="hr_accept" target="hr_select">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e19" edge="1" parent="lane_hr" source="hr_select" target="hr_add">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e9" edge="1" parent="pool" source="send_task" target="review_task">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e17" edge="1" parent="pool" source="create_request" style="entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="hr_accept">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="497.7586206896549" y="846.9999999999998" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e20" edge="1" parent="pool" source="hr_add" style="exitX=0.5;exitY=0;exitDx=0;exitDy=0;" target="search_task">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1038" y="847" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e21" edge="1" parent="pool" source="cancel_work_task" target="cancel_recv" value="Сигнал об отмене">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="da3" edge="1" parent="pool" source="hr_add" style="dashed=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" target="datastore">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1026.515151515152" y="846.9999999999998" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legend_box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#000000;" value="ЛЕГЕНДА (BPMN):&#xa;• Круг – событие (Start/Intermediate)&#xa;• Круг с толстой границей – конечное событие (End)&#xa;• Прямоугольник с закруглением – задача (Task)&#xa;• Ромб – шлюз (Gateway, точка решения)&#xa;• Цилиндр – хранилище данных (Data Store)&#xa;• Лист – объект данных (Data Object)&#xa;• Сплошная стрелка – поток операций (Sequence Flow)&#xa;• Пунктир – ассоциация данных (Data Association)" vertex="1">
+          <mxGeometry height="240" width="1100" x="20" y="1240" as="geometry" />
+        </mxCell>
+        <mxCell id="glossary_box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeColor=#000000;" value="ГЛОССАРИЙ:&#xa;• «НОВЫЙ» — черновик, виден только управляющему магазином&#xa;• «В РАБОТЕ» — задание отправлено в офис и обрабатывается&#xa;• «ВЫПОЛНЕН» — исполнитель назначен (офис)&#xa;• «ЗАКРЫТ» — работы подтверждены, редактирование запрещено&#xa;• «ОТМЕНЁН» — задание остановлено управляющим магазином" vertex="1">
+          <mxGeometry height="240" width="1380" x="1140" y="1240" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
